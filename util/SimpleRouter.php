@@ -1,6 +1,7 @@
 <?php
 namespace mainword\util;
 
+
 /**
  * A class provide simple url routing in php
  */
@@ -11,7 +12,12 @@ class SimpleRouter {
    */
   private $routes = array();
 
+  /**
+   * [$base_path description]
+   * @var string
+   */
   private $base_path = '';
+
   /**
    * [__construct description]
    */
@@ -47,8 +53,6 @@ class SimpleRouter {
    */
   public function execute($url) {
     foreach ($this->routes as $pattern => $callback) {
-      echo "url:[$url]";
-      echo "pattern:[$pattern]";
       if (preg_match($pattern, $url, $params)) {
         array_shift($params);
         return call_user_func_array($callback, array_values($params));
